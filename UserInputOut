@@ -189,6 +189,20 @@ public class UserInputOut {
 
                                             
                                             totalHours += newTask.returnTotalHours();
+
+                                            
+                                            totalHours += newTask.returnTotalHours();
+
+                                            
+                                            developers[taskCount] = devDetails;
+                                            taskNames[taskCount] = taskName;
+                                            taskIDs[taskCount] = newTask.createTaskID();
+                                            taskDurations[taskCount] = taskDuration;
+                                            taskStatuses[taskCount] = taskStatus;
+                                            
+                                            taskCount++;
+                                        
+                                        
                                         }
                                         
                                         
