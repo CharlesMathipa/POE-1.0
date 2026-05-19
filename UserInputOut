@@ -14,6 +14,15 @@ public class UserInputOut {
             boolean checkPasswordComplexity;
             boolean checkCellPhoneNumber;
 
+            
+            int maxTasks = 100; 
+            String[] developers = new String[maxTasks];
+            String[] taskNames = new String[maxTasks];
+            String[] taskIDs = new String[maxTasks];
+            int[] taskDurations = new int[maxTasks];
+            String[] taskStatuses = new String[maxTasks];
+            int taskCount = 0; 
+
             while (!exitProgram) {
                 System.out.println("\n=== NEOAPP MENU ===");
                 System.out.println("1. Register");
