@@ -209,7 +209,105 @@ public class UserInputOut {
                                         System.out.println("\nTotal hours across all entered tasks: " + totalHours + " hrs");
                                     }
                                     
-                                    case "2" -> System.out.println("\nComing Soon");
+                                    case "2" -> {
+                                        boolean exitReport = false;
+                                        while (!exitReport) {
+                                            System.out.println("\n--- TASK REPORT MENU ---");
+                                            System.out.println("1. Show completed tasks (Done)");
+                                            System.out.println("2. Show task with longest duration");
+                                            System.out.println("3. Search for a task by name");
+                                            System.out.println("4. Search tasks by developer");
+                                            System.out.println("5. Delete a task");
+                                            System.out.println("6. Show full task report");
+                                            System.out.println("7. Return to EasyKanban Menu");
+                                            System.out.print("Please choose an option (1-7): ");
+
+                                            String reportChoice = scanner.nextLine();
+
+                                            switch (reportChoice) {
+                                                case "1" -> {
+                                                    System.out.println("\n--- COMPLETED TASKS ---");
+                                                    boolean found = false;
+                                                    for (int i = 0; i < taskCount; i++) {
+                                                        
+                                                        if (taskStatuses[i] != null && taskStatuses[i].equalsIgnoreCase("Done")) {
+                                                            System.out.println("Developer: " + developers[i] + " | Task Name: " + taskNames[i] + " | Duration: " + taskDurations[i] + "hrs");
+                                                            found = true;
+                                                        }
+                                                    }
+                                                    if (!found) System.out.println("No completed tasks found.");
+                                                }
+                                                case "2" -> {
+                                                    System.out.println("\n--- LONGEST TASK ---");
+                                                    if (taskCount == 0) {
+                                                        System.out.println("No tasks have been entered yet.");
+                                                    } else {
+                                                        int maxIndex = 0;
+                                                        for (int i = 1; i < taskCount; i++) {
+                                                           
+                                                            if (taskDurations[i] > taskDurations[maxIndex]) {
+                                                                maxIndex = i;
+                                                            }
+                                                        }
+                                                        System.out.println("Developer: " + developers[maxIndex] + " | Duration: " + taskDurations[maxIndex] + "hrs");
+                                                    }
+                                                }
+                                                case "3" -> {
+                                                    System.out.print("\nEnter the exact Task Name to search: ");
+                                                    String searchName = scanner.nextLine();
+                                                    boolean found = false;
+                                                    for (int i = 0; i < taskCount; i++) {
+                                                        if (taskNames[i] != null && taskNames[i].equalsIgnoreCase(searchName)) {
+                                                            System.out.println("Task Name: " + taskNames[i] + " | Developer: " + developers[i] + " | Status: " + taskStatuses[i]);
+                                                            found = true;
+                                                        }
+                                                    }
+                                                    if (!found) System.out.println("Task not found.");
+                                                }
+                                                case "4" -> {
+                                                    System.out.print("\nEnter the Developer Name to search: ");
+                                                    String searchDev = scanner.nextLine();
+                                                    boolean found = false;
+                                                    for (int i = 0; i < taskCount; i++) {
+                                                        if (developers[i] != null && developers[i].equalsIgnoreCase(searchDev)) {
+                                                            System.out.println("Task Name: " + taskNames[i] + " | Status: " + taskStatuses[i]);
+                                                            found = true;
+                                                        }
+                                                    }
+                                                    if (!found) System.out.println("No tasks found for this developer.");
+                                                }
+                                                case "5" -> {
+                                                    System.out.print("\nEnter the exact Task Name to delete: ");
+                                                    String deleteName = scanner.nextLine();
+                                                    boolean deleted = false;
+                                                    for (int i = 0; i < taskCount; i++) {
+                                                        if (taskNames[i] != null && taskNames[i].equalsIgnoreCase(deleteName)) {
+                                                           
+                                                            taskNames[i] = "DELETED";
+                                                            System.out.println("Task '" + deleteName + "' successfully deleted.");
+                                                            deleted = true;
+                                                            break; 
+                                                        }
+                                                    }
+                                                    if (!deleted) System.out.println("Task not found.");
+                                                }
+                                                case "6" -> {
+                                                    System.out.println("\n--- FULL TASK REPORT ---");
+                                                    if (taskCount == 0) System.out.println("No tasks available.");
+                                                    for (int i = 0; i < taskCount; i++) {
+                                                        // Only print tasks that haven't been deleted
+                                                        if (taskNames[i] != null && !taskNames[i].equals("DELETED")) {
+                                                            System.out.println("Task ID: " + taskIDs[i] + " | Name: " + taskNames[i] + " | Dev: " + developers[i] + " | Duration: " + taskDurations[i] + "hrs | Status: " + taskStatuses[i]);
+                                                        }
+                                                    }
+                                                }
+                                                case "7" -> {
+                                                    System.out.println("Returning to EasyKanban Menu...");
+                                                    exitReport = true; 
+                                                default -> System.out.println("Invalid option. Please choose 1-7.");
+                                            }
+                                        }
+                                    }
                                     
                                     case "3" -> {
                                         System.out.println("\nExiting EasyKanban... Returning to Main Menu.");
