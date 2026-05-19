@@ -115,14 +115,14 @@ public class UserInputOut {
                         
                         if (isValidLogin) {
                             System.out.println("A successful login.");
-                            System.out.println("\nWelcome to EasyKanban");
+                            System.out.println("\nWelcome to Main");
                             
                             boolean exitKanban = false;
                             int totalHours = 0; 
 
                             
                             while (!exitKanban) {
-                                System.out.println("\n=== EASYKANBAN MENU ===");
+                                System.out.println("\n=== Main MENU ===");
                                 System.out.println("1. Add tasks");
                                 System.out.println("2. Show report");
                                 System.out.println("3. Quit");
@@ -219,7 +219,7 @@ public class UserInputOut {
                                             System.out.println("4. Search tasks by developer");
                                             System.out.println("5. Delete a task");
                                             System.out.println("6. Show full task report");
-                                            System.out.println("7. Return to EasyKanban Menu");
+                                            System.out.println("7. Return to Main Menu");
                                             System.out.print("Please choose an option (1-7): ");
 
                                             String reportChoice = scanner.nextLine();
@@ -302,7 +302,7 @@ public class UserInputOut {
                                                     }
                                                 }
                                                 case "7" -> {
-                                                    System.out.println("Returning to EasyKanban Menu...");
+                                                    System.out.println("Returning to Main Menu...");
                                                     exitReport = true; 
                                                 default -> System.out.println("Invalid option. Please choose 1-7.");
                                             }
@@ -310,7 +310,7 @@ public class UserInputOut {
                                     }
                                     
                                     case "3" -> {
-                                        System.out.println("\nExiting EasyKanban... Returning to Main Menu.");
+                                        System.out.println("\nExiting Main... Returning to Main Menu.");
                                         exitKanban = true; 
                                     }
                                     
