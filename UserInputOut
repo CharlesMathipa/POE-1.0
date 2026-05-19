@@ -16,7 +16,7 @@ public class UserInputOut {
 
             
             int maxTasks = 100; 
-            String[] developers = new String[maxTasks];
+            String[] recipients = new String[maxTasks];
             String[] taskNames = new String[maxTasks];
             String[] taskIDs = new String[maxTasks];
             int[] taskDurations = new int[maxTasks];
@@ -115,14 +115,14 @@ public class UserInputOut {
                         
                         if (isValidLogin) {
                             System.out.println("A successful login.");
-                            System.out.println("\nWelcome to Main");
+                            System.out.println("\nWelcome to EasyKanban");
                             
                             boolean exitKanban = false;
                             int totalHours = 0; 
 
                             
                             while (!exitKanban) {
-                                System.out.println("\n=== Main MENU ===");
+                                System.out.println("\n=== EASYKANBAN MENU ===");
                                 System.out.println("1. Add tasks");
                                 System.out.println("2. Show report");
                                 System.out.println("3. Quit");
@@ -158,7 +158,7 @@ public class UserInputOut {
                                                 }
                                             }
 
-                                            System.out.print("Enter Developer First and Last Name: ");
+                                            System.out.print("Enter Recipient First and Last Name: ");
                                             String devDetails = scanner.nextLine();
 
                                             System.out.print("Enter Task Duration (in hours): ");
@@ -194,7 +194,7 @@ public class UserInputOut {
                                             totalHours += newTask.returnTotalHours();
 
                                             
-                                            developers[taskCount] = devDetails;
+                                            recipients[taskCount] = devDetails;
                                             taskNames[taskCount] = taskName;
                                             taskIDs[taskCount] = newTask.createTaskID();
                                             taskDurations[taskCount] = taskDuration;
@@ -216,10 +216,10 @@ public class UserInputOut {
                                             System.out.println("1. Show completed tasks (Done)");
                                             System.out.println("2. Show task with longest duration");
                                             System.out.println("3. Search for a task by name");
-                                            System.out.println("4. Search tasks by developer");
+                                            System.out.println("4. Search tasks by recipient/developer");
                                             System.out.println("5. Delete a task");
                                             System.out.println("6. Show full task report");
-                                            System.out.println("7. Return to Main Menu");
+                                            System.out.println("7. Return to EasyKanban Menu");
                                             System.out.print("Please choose an option (1-7): ");
 
                                             String reportChoice = scanner.nextLine();
@@ -231,7 +231,7 @@ public class UserInputOut {
                                                     for (int i = 0; i < taskCount; i++) {
                                                         
                                                         if (taskStatuses[i] != null && taskStatuses[i].equalsIgnoreCase("Done")) {
-                                                            System.out.println("Developer: " + developers[i] + " | Task Name: " + taskNames[i] + " | Duration: " + taskDurations[i] + "hrs");
+                                                            System.out.println("Recipient: " + recipients[i] + " | Task Name: " + taskNames[i] + " | Duration: " + taskDurations[i] + "hrs");
                                                             found = true;
                                                         }
                                                     }
@@ -249,7 +249,7 @@ public class UserInputOut {
                                                                 maxIndex = i;
                                                             }
                                                         }
-                                                        System.out.println("Developer: " + developers[maxIndex] + " | Duration: " + taskDurations[maxIndex] + "hrs");
+                                                        System.out.println("Recipient: " + recipients[maxIndex] + " | Duration: " + taskDurations[maxIndex] + "hrs");
                                                     }
                                                 }
                                                 case "3" -> {
@@ -258,23 +258,23 @@ public class UserInputOut {
                                                     boolean found = false;
                                                     for (int i = 0; i < taskCount; i++) {
                                                         if (taskNames[i] != null && taskNames[i].equalsIgnoreCase(searchName)) {
-                                                            System.out.println("Task Name: " + taskNames[i] + " | Developer: " + developers[i] + " | Status: " + taskStatuses[i]);
+                                                            System.out.println("Task Name: " + taskNames[i] + " | Recipient: " + recipients[i] + " | Status: " + taskStatuses[i]);
                                                             found = true;
                                                         }
                                                     }
                                                     if (!found) System.out.println("Task not found.");
                                                 }
                                                 case "4" -> {
-                                                    System.out.print("\nEnter the Developer Name to search: ");
-                                                    String searchDev = scanner.nextLine();
+                                                    System.out.print("\nEnter the Recipient Name to search: ");
+                                                    String searchRecipient = scanner.nextLine();
                                                     boolean found = false;
                                                     for (int i = 0; i < taskCount; i++) {
-                                                        if (developers[i] != null && developers[i].equalsIgnoreCase(searchDev)) {
+                                                        if (recipients[i] != null && recipients[i].equalsIgnoreCase(searchRecipient)) {
                                                             System.out.println("Task Name: " + taskNames[i] + " | Status: " + taskStatuses[i]);
                                                             found = true;
                                                         }
                                                     }
-                                                    if (!found) System.out.println("No tasks found for this developer.");
+                                                    if (!found) System.out.println("No tasks found for this recipient.");
                                                 }
                                                 case "5" -> {
                                                     System.out.print("\nEnter the exact Task Name to delete: ");
@@ -297,12 +297,12 @@ public class UserInputOut {
                                                     for (int i = 0; i < taskCount; i++) {
                                                         // Only print tasks that haven't been deleted
                                                         if (taskNames[i] != null && !taskNames[i].equals("DELETED")) {
-                                                            System.out.println("Task ID: " + taskIDs[i] + " | Name: " + taskNames[i] + " | Dev: " + developers[i] + " | Duration: " + taskDurations[i] + "hrs | Status: " + taskStatuses[i]);
+                                                            System.out.println("Task ID: " + taskIDs[i] + " | Name: " + taskNames[i] + " | Recipient: " + recipients[i] + " | Duration: " + taskDurations[i] + "hrs | Status: " + taskStatuses[i]);
                                                         }
                                                     }
                                                 }
                                                 case "7" -> {
-                                                    System.out.println("Returning to Main Menu...");
+                                                    System.out.println("Returning to EasyKanban Menu...");
                                                     exitReport = true; 
                                                 default -> System.out.println("Invalid option. Please choose 1-7.");
                                             }
@@ -310,7 +310,7 @@ public class UserInputOut {
                                     }
                                     
                                     case "3" -> {
-                                        System.out.println("\nExiting Main... Returning to Main Menu.");
+                                        System.out.println("\nExiting EasyKanban... Returning to Main Menu.");
                                         exitKanban = true; 
                                     }
                                     
