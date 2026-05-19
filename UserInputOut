@@ -216,7 +216,7 @@ public class UserInputOut {
                                             System.out.println("1. Show completed tasks (Done)");
                                             System.out.println("2. Show task with longest duration");
                                             System.out.println("3. Search for a task by name");
-                                            System.out.println("4. Search tasks by recipient/developer");
+                                            System.out.println("4. Search tasks by recipient");
                                             System.out.println("5. Delete a task");
                                             System.out.println("6. Show full task report");
                                             System.out.println("7. Return to EasyKanban Menu");
