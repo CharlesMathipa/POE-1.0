@@ -1,0 +1,56 @@
+public class LoginTest {
+    
+    public LoginTest() {
+    }
+
+    Login login = new Login();
+    
+   
+   @Test
+    public void testCheckUserNameCorrect() {
+        //this tests a valid username
+        assertTrue(login.checkUserName("kyl_1"));
+    }
+
+    @Test
+    public void testCheckUserNameIncorrect() {
+        //this tests an invalid username
+        assertFalse(login.checkUserName("kyle_12345"));
+    }
+
+    @Test
+    public void testCheckPasswordComplexitySuccess() {
+        //this tests a valid password
+        assertTrue(login.checkPasswordComplexity("Ch@tt3r2023!"));
+    }
+
+    @Test
+    public  void testCheckPasswordComplexityFailure() {
+        //this tests an invalid password
+        assertFalse(login.checkPasswordComplexity("password"));
+    }
+
+    @Test
+    public void testPhoneNumberValid() {
+        // this tests a valid international number
+        assertTrue(login.checkPhoneNumber("+27123456789"));
+    }
+
+    @Test
+    public void testPhoneNumberInvalid() {
+        // this tests an invalid international number
+        assertFalse(login.checkPhoneNumber("08966553"));
+    }
+
+    @Test
+    public void testLoginLogic() {
+        //We should first, register a user to set the 'stored' variables
+        login.registerUser("ky_1", "P@ssword1!", "John", "Doe", "+27821234567");
+        
+        //This Test if login succeeds with the correct details
+        assertTrue(login.loginUser("ky_1", "P@ssword1!"));
+        
+        //This this test if login fails with the wrong password
+        assertFalse(login.loginUser("ky_1", "wrongPass"));
+    }
+}
