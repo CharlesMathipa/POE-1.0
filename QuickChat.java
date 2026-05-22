@@ -16,7 +16,7 @@ void main() {
         boolean checkCellPhoneNumber;
 
         while (!exitProgram) {
-            IO.println("\n=== NEOAPP MENU ===");
+            IO.println("\n=== Quickchat MENU ===");
             IO.println("1. Register");
             IO.println("2. Login");
             IO.println("3. Exit");
@@ -172,7 +172,7 @@ void main() {
                 }
 
                 case "3" -> {
-                    IO.println("Exiting NEOAPP... Goodbye!");
+                    IO.println("Exiting QuickChat... Goodbye!");
                     exitProgram = true;
                 }
 
